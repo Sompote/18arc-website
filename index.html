@@ -54,7 +54,11 @@
   @media (max-width:900px){
     section,header,footer,nav{padding-left:22px!important;padding-right:22px!important}
     .nav-desc{display:none!important}
-    .nav-links{gap:14px!important}
+    .nav-burger{display:inline-flex!important}
+    .nav-links{display:none!important;position:absolute;top:100%;left:0;right:0;flex-direction:column!important;align-items:stretch!important;gap:0!important;padding:8px 22px 20px;background:rgba(23,19,14,0.97);backdrop-filter:blur(10px);border-bottom:1px solid rgba(245,239,227,0.14)}
+    .nav-links.open{display:flex!important}
+    .nav-links a{font-size:16px!important;padding:14px 6px!important;border-bottom:1px solid rgba(245,239,227,0.08)}
+    .nav-links a:last-child{margin-top:14px;justify-content:center;border-bottom:none;padding:13px 20px!important}
     .split2{grid-template-columns:1fr!important;gap:36px!important}
     .row-3col{grid-template-columns:96px 1fr!important}
     .row-3col>:last-child{grid-column:1/-1;justify-self:start}
@@ -62,9 +66,16 @@
     .session-row>:last-child{grid-column:1/-1;justify-self:start}
     .footer-grid{grid-template-columns:1fr 1fr!important}
   }
+  @media (max-width:700px){
+    #home{padding-top:60px!important;padding-bottom:56px!important}
+    #about,#theme,#dates,#register,#venue,#history,#committee{padding-top:64px!important;padding-bottom:64px!important}
+    #sponsors{padding-top:56px!important;padding-bottom:56px!important}
+    #updates{padding-top:48px!important;padding-bottom:48px!important}
+  }
   @media (max-width:560px){
     .footer-grid{grid-template-columns:1fr!important}
-    .nav-links a{font-size:13px!important}
+    h1{letter-spacing:-1.5px!important}
+    .row-3col{grid-template-columns:1fr!important;gap:4px!important}
   }
   @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
   @keyframes riseIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
@@ -78,14 +89,15 @@
     <span style="font-family:'Archivo';font-weight:900;font-size:26px;letter-spacing:-1px;color:#F5EFE3">18<span style="color:#E07A3E">ARC</span></span>
     <span class="nav-desc" style="font-size:11px;line-height:1.15;color:rgba(245,239,227,0.6);font-weight:500;text-transform:uppercase;letter-spacing:.5px;max-width:190px">Asian Regional Conference on Soil Mechanics &amp; Geotechnical Engineering</span>
   </a>
-  <div class="nav-links" style="display:flex;align-items:center;gap:26px;flex-wrap:wrap;justify-content:flex-end">
-    <a href="#about" style="color:rgba(245,239,227,0.82);font-size:14px;font-weight:500">About</a>
-    <a href="#theme" style="color:rgba(245,239,227,0.82);font-size:14px;font-weight:500">Theme</a>
-    <a href="#program" style="color:rgba(245,239,227,0.82);font-size:14px;font-weight:500">Program</a>
-    <a href="#dates" style="color:rgba(245,239,227,0.82);font-size:14px;font-weight:500">Dates</a>
-    <a href="#submissions" style="color:rgba(245,239,227,0.82);font-size:14px;font-weight:500">Submit</a>
-    <a href="#venue" style="color:rgba(245,239,227,0.82);font-size:14px;font-weight:500">Venue</a>
-    <a href="#register" style="display:inline-flex;align-items:center;gap:7px;background:#E07A3E;color:#17130E;font-weight:700;font-size:14px;padding:10px 20px;border-radius:999px">Register</a>
+  <button class="nav-burger" onclick="{{ toggleMenu }}" aria-expanded="{{ navExpanded }}" aria-label="Toggle navigation menu" style="display:none;align-items:center;justify-content:center;width:44px;height:44px;background:transparent;border:1px solid rgba(245,239,227,0.3);border-radius:10px;color:#F5EFE3;font-size:20px;cursor:pointer;flex-shrink:0">{{ burgerIcon }}</button>
+  <div class="{{ navLinksClass }}" style="display:flex;align-items:center;gap:26px;flex-wrap:wrap;justify-content:flex-end">
+    <a href="#about" onclick="{{ closeMenu }}" style="color:rgba(245,239,227,0.82);font-size:14px;font-weight:500">About</a>
+    <a href="#theme" onclick="{{ closeMenu }}" style="color:rgba(245,239,227,0.82);font-size:14px;font-weight:500">Theme</a>
+    <a href="#program" onclick="{{ closeMenu }}" style="color:rgba(245,239,227,0.82);font-size:14px;font-weight:500">Program</a>
+    <a href="#dates" onclick="{{ closeMenu }}" style="color:rgba(245,239,227,0.82);font-size:14px;font-weight:500">Dates</a>
+    <a href="#submissions" onclick="{{ closeMenu }}" style="color:rgba(245,239,227,0.82);font-size:14px;font-weight:500">Submit</a>
+    <a href="#venue" onclick="{{ closeMenu }}" style="color:rgba(245,239,227,0.82);font-size:14px;font-weight:500">Venue</a>
+    <a href="#register" onclick="{{ closeMenu }}" style="display:inline-flex;align-items:center;gap:7px;background:#E07A3E;color:#17130E;font-weight:700;font-size:14px;padding:10px 20px;border-radius:999px">Register</a>
   </div>
 </nav>
 
@@ -101,7 +113,7 @@
     </div>
     <div style="margin-top:18px;font-size:13px;letter-spacing:.6px;color:rgba(245,239,227,0.62);font-weight:500">Under the auspices of the International Society for Soil Mechanics and Geotechnical Engineering (ISSMGE)</div>
     <div style="margin-top:26px;font-size:clamp(15px,1.7vw,20px);font-weight:600;letter-spacing:.3px;color:rgba(245,239,227,0.88);max-width:46ch">The 18<sup style="font-size:.6em">th</sup> Asian Regional Conference on Soil Mechanics and Geotechnical Engineering</div>
-    <h1 style="font-family:'Archivo';font-weight:900;font-size:clamp(52px,9vw,116px);line-height:.92;letter-spacing:-3px;margin:12px 0 0;text-wrap:balance">18ARC <span style="color:#E07A3E">Bangkok 2027</span></h1>
+    <h1 style="font-family:'Archivo';font-weight:900;font-size:clamp(40px,9.5vw,116px);line-height:.92;letter-spacing:-3px;margin:12px 0 0;text-wrap:balance">18ARC <span style="color:#E07A3E">Bangkok 2027</span></h1>
     <p style="margin-top:26px;max-width:60ch;font-size:clamp(16px,1.7vw,21px);color:rgba(245,239,227,0.78);font-weight:300">Advancing soil mechanics and geotechnical engineering across Asia. Hosted by the Thai Geotechnical Society under the ISSMGE, returning to Bangkok for the first time since 1991.</p>
 
     <div style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-end;margin-top:44px">
@@ -479,7 +491,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { now: Date.now() };
+  state = { now: Date.now(), menuOpen: false };
   target = new Date('2027-11-15T09:00:00+07:00').getTime();
 
   componentDidMount() {
@@ -559,6 +571,11 @@ class Component extends DCLogic {
       days,
       hours: this.pad(Math.floor((diff % 86400000) / 3600000)),
       mins: this.pad(Math.floor((diff % 3600000) / 60000)),
+      navLinksClass: 'nav-links' + (this.state.menuOpen ? ' open' : ''),
+      navExpanded: this.state.menuOpen ? 'true' : 'false',
+      burgerIcon: this.state.menuOpen ? '✕' : '☰',
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
       topics, dates, fees,
       history, committee
     };
