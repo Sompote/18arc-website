@@ -1,7 +1,7 @@
 # 18ARC — Design Spec ("Earth Strata")
 
 Reusable style summary for the 18th Asian Regional Geotechnical Engineering Conference
-site (Bangkok, 15–19 November 2027 · IMPACT Forum, Muang Thong Thani). Direction:
+site (Bangkok, 9–13 November 2027 · IMPACT Forum, Muang Thong Thani). Direction:
 **modern & bold, academic authority** — layered earth strata, warm ink and cream,
 terracotta accents. Built for a geotechnical audience: the palette is soil.
 
@@ -80,13 +80,21 @@ Set `text-wrap: balance` on headlines, `pretty` on paragraphs. Cap measure at
 
 **Borders:** 1px hairline. Emphasis rules 2px solid ink (table headers, subsection rules).
 
+**Breakpoints:** `900px` — section side padding drops to 22px, nav collapses to the
+burger, two-column splits stack, multi-column rows reflow; `700px` — section vertical
+padding tightens (110px → 48–64px); `560px` — footer goes single-column, hero
+letter-spacing relaxes to -1.5px.
+
 ---
 
 ## 4. Components
 
 **Sticky nav** — ink at 92% + `backdrop-filter: blur(10px)`, bottom hairline. Wordmark
 `18` cream + `ARC` terracotta, with a 2-line uppercase descriptor. Text links at
-`rgba(cream,.82)`; one pill CTA in terracotta.
+`rgba(cream,.82)`; one pill CTA in terracotta. Under 900px the descriptor hides and
+links collapse behind a 44px bordered burger button (☰/✕); the open menu is a
+full-width dropdown at 97% ink with blur, links as 16px hairline-separated rows and
+the CTA pill centred at the bottom.
 
 **Hero** — ink background, four stacked layers in this order:
 1. full-bleed photo `<img>` (`object-fit:cover`, `object-position:center 58%`);
@@ -115,8 +123,11 @@ Register, Payment, Event.
 **Program tabs** — day buttons flip to ink fill + cream text when active; the panel
 below is a white card with `150px 1fr auto` session rows and teal tags.
 
-**Price cards** — three tiers; the featured tier (Full Registration) inverts to a solid
-terracotta fill with ink text, others stay cream. Numeral 46px Archivo 900.
+**Price cards** — four tiers (Early Bird, Full Registration, Student, Accompanying
+Person); the featured tier (Full Registration) inverts to a solid terracotta fill with
+ink text, others stay cream. Numeral 46px Archivo 900. Below the grid, add-ons and
+caveats live in muted lines, not cards — e.g. the conference dinner ($90, not included
+in the registration fee) as a 15px line with a 13px asterisked footnote.
 
 **Hotel cards** — white, 18px radius, `auto-fit minmax(300px,1fr)`. Pill badge at top
 (teal = conference hotel, sand/umber = budget), Archivo 800/24px name, muted

@@ -1,7 +1,7 @@
 # 18ARC — Conference Website
 
 Website for the 18th Asian Regional Conference on Soil Mechanics and
-Geotechnical Engineering (18ARC), Bangkok, 15–19 November 2027.
+Geotechnical Engineering (18ARC), Bangkok, 9–13 November 2027.
 Hosted by the Thai Geotechnical Society with EIT, under the auspices of ISSMGE.
 
 **Live site:** https://sompote.github.io/18arc-website/
