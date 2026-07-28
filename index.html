@@ -485,6 +485,7 @@
   </div>
   <div style="max-width:1200px;margin:44px auto 0;padding-top:24px;border-top:1px solid rgba(245,239,227,0.12);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:rgba(245,239,227,0.45)">
     <span>© 2027 Thai Geotechnical Society · ISSMGE</span>
+    <span id="visitor-count" style="font-family:'Archivo';font-weight:800;font-size:20px;letter-spacing:-0.3px;color:#E07A3E">{{ visitorsLine }}</span>
     <span>9–13 November 2027 · IMPACT Forum, Bangkok</span>
   </div>
 </footer>
@@ -493,11 +494,23 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { now: Date.now(), menuOpen: false };
+  state = { now: Date.now(), menuOpen: false, visitors: null };
   target = new Date('2027-11-09T09:00:00+07:00').getTime();
+  // Visitor counter (abacus.jasoncameron.dev). To reset at real deploy,
+  // change counterKey to a new name (e.g. 'visits') — new key starts from zero.
+  counterNs = 'sompote-18arc';
+  counterKey = 'visits-dev';
 
   componentDidMount() {
     this.timer = setInterval(() => this.setState({ now: Date.now() }), 30000);
+    const action = sessionStorage.getItem('18arc-visited') ? 'get' : 'hit';
+    fetch(`https://abacus.jasoncameron.dev/${action}/${this.counterNs}/${this.counterKey}`)
+      .then(r => r.ok ? r.json() : Promise.reject())
+      .then(data => {
+        sessionStorage.setItem('18arc-visited', '1');
+        this.setState({ visitors: data.value });
+      })
+      .catch(() => {});
   }
   componentWillUnmount() { clearInterval(this.timer); }
   pad(n) { return String(n).padStart(2, '0'); }
@@ -579,6 +592,7 @@ class Component extends DCLogic {
       burgerIcon: this.state.menuOpen ? '✕' : '☰',
       toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
       closeMenu: () => this.setState({ menuOpen: false }),
+      visitorsLine: this.state.visitors == null ? '' : 'Visitors: ' + Number(this.state.visitors).toLocaleString('en-US'),
       topics, dates, fees,
       history, committee
     };
