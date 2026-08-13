@@ -123,11 +123,11 @@ Register, Payment, Event.
 **Program tabs** — day buttons flip to ink fill + cream text when active; the panel
 below is a white card with `150px 1fr auto` session rows and teal tags.
 
-**Price cards** — four tiers (Early Bird, Full Registration, Student, Accompanying
-Person); the featured tier (Full Registration) inverts to a solid terracotta fill with
-ink text, others stay cream. Numeral 46px Archivo 900. Below the grid, add-ons and
-caveats live in muted lines, not cards — e.g. the conference dinner ($90, not included
-in the registration fee) as a 15px line with a 13px asterisked footnote.
+**Registration panel** — no fee figures are published yet, so the price grid is replaced
+by a single translucent cream card (6% cream fill, 20% hairline border, 20px radius,
+max 640px) carrying an Archivo 900 clamp(26px,3.4vw,38px) "Registration fees will be
+announced later" headline, a hairline rule, then a 15px muted paragraph naming the tiers
+still to be priced. Fee cards return only when the rates are confirmed.
 
 **Hotel cards** — white, 18px radius, `auto-fit minmax(300px,1fr)`. Pill badge at top
 (teal = conference hotel, sand/umber = budget), Archivo 800/24px name, muted

@@ -279,20 +279,12 @@
   <div style="max-width:1200px;margin:0 auto">
     <div style="font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#EBD9B8;font-weight:700">Registration & fees</div>
     <h2 style="font-family:'Archivo';font-weight:800;font-size:clamp(30px,4.4vw,52px);line-height:1.02;letter-spacing:-1.5px;margin-top:14px">Secure your place</h2>
-    <p style="margin-top:16px;font-size:17px;color:rgba(245,239,227,0.8);max-width:56ch">Fees include access to all technical sessions, the exhibition, conference proceedings, daily lunches, and the welcome reception. Prices in USD and provisional.</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;margin-top:44px">
-      <sc-for list="{{ fees }}" as="f" hint-placeholder-count="4">
-        <div style="background:{{ f.bg }};color:{{ f.fg }};border-radius:20px;padding:30px;border:1px solid rgba(245,239,227,0.16);position:relative">
-          <div style="font-family:'Archivo';font-weight:700;font-size:19px">{{ f.name }}</div>
-          <div style="font-family:'Archivo';font-weight:900;font-size:46px;letter-spacing:-2px;margin-top:12px;line-height:1">{{ f.price }}</div>
-          <div style="font-size:13px;opacity:.7;margin-top:2px">{{ f.note }}</div>
-          <div style="height:1px;background:currentColor;opacity:.16;margin:22px 0"></div>
-          <div style="font-size:14px;line-height:1.7;opacity:.85">{{ f.detail }}</div>
-        </div>
-      </sc-for>
+    <p style="margin-top:16px;font-size:17px;color:rgba(245,239,227,0.8);max-width:56ch">Registration will include access to all technical sessions, the exhibition, conference proceedings, daily lunches, and the welcome reception.</p>
+    <div style="margin-top:44px;background:rgba(245,239,227,0.06);border:1px solid rgba(245,239,227,0.2);border-radius:20px;padding:38px 34px;max-width:640px">
+      <div style="font-family:'Archivo';font-weight:900;font-size:clamp(26px,3.4vw,38px);letter-spacing:-1px;line-height:1.1">Registration fees<br>will be announced later</div>
+      <div style="height:1px;background:#F5EFE3;opacity:.16;margin:24px 0"></div>
+      <div style="font-size:15px;line-height:1.7;color:rgba(245,239,227,0.8)">Rates for early-bird, full, student, and accompanying-person registration will be published with the First Announcement. Join the mailing list to be notified when registration opens.</div>
     </div>
-    <p style="margin-top:18px;font-size:15px;color:rgba(245,239,227,0.85)">Conference dinner*: <strong>$90</strong> per person.</p>
-    <p style="margin-top:6px;font-size:13px;color:rgba(245,239,227,0.6)">* The conference dinner is not included in the registration fee.</p>
     <div style="margin-top:36px;display:flex;gap:14px;flex-wrap:wrap">
       <a href="mailto:secretariat@18arc.org?subject=18ARC%20registration%20interest" style="display:inline-flex;align-items:center;gap:9px;background:#E07A3E;color:#17130E;font-weight:700;font-size:16px;padding:15px 30px;border-radius:999px">Register your interest →</a>
       <a href="#submissions" style="display:inline-flex;align-items:center;gap:9px;background:transparent;color:#F5EFE3;font-weight:600;font-size:16px;padding:15px 30px;border-radius:999px;border:1px solid rgba(245,239,227,0.4)">Submit an abstract</a>
@@ -554,13 +546,6 @@ class Component extends DCLogic {
       };
     });
 
-    const fees = [
-      { name: 'Early Bird', price: '$750', note: 'before 15 Jul 2027', detail: 'Full delegate access · proceedings · welcome reception · lunches', bg: '#F5EFE3', fg: '#17130E' },
-      { name: 'Full Registration', price: '$850', note: 'from 15 Jul 2027', detail: 'Full delegate access · proceedings · welcome reception · lunches', bg: '#E07A3E', fg: '#17130E' },
-      { name: 'Student', price: '$350', note: 'full-time, with valid ID', detail: 'Full delegate access · proceedings · welcome reception · lunches', bg: '#F5EFE3', fg: '#17130E' },
-      { name: 'Accompanying Person', price: '$150', note: 'guest programme', detail: 'Welcome reception · banquet (no technical sessions)', bg: '#F5EFE3', fg: '#17130E' }
-    ];
-
     const past = [
       ['I', 'New Delhi', '1960'], ['II', 'Tokyo', '1963'], ['III', 'Haifa', '1967'],
       ['IV', 'Bangkok', '1971'], ['V', 'Bangalore', '1975'], ['VI', 'Singapore', '1979'],
@@ -595,7 +580,7 @@ class Component extends DCLogic {
       toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
       closeMenu: () => this.setState({ menuOpen: false }),
       visitorsLine: this.state.visitors == null ? '' : 'Visitors: ' + Number(this.state.visitors).toLocaleString('en-US'),
-      topics, dates, fees,
+      topics, dates,
       history, committee
     };
   }
